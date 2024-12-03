@@ -16,7 +16,6 @@ const Index = () => {
       <div className={`w-screen ${show ? 'visible opacity-100' : 'invisible opacity-30'} transition-all duration-500 h-screen fixed bg-[#252627ad] flex justify-center items-center`}>
         <div className='w-[350px] bg-[#323335] m-auto px-6 py-4 rounded-md relative'>
           <div className='absolute text-xl text-white cursor-pointer right-4 top-4' onClick={() => setShow(false)}><IoMdClose /></div>
-
           {
             type === "signup" &&
             <>

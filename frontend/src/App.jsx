@@ -1,6 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router'
 import './App.css'
-import Index from './pages/Index'
+// import Index from './pages/Index'
+import Layout from './pages/Layout'
+import Home from './components/Home'
+import Projects from './components/Projects'
+import Templates from './components/Templates'
+import CreateDesign from './components/CreateDesign'
 
 function App() {
 
@@ -9,7 +14,13 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Index />} />
+          {/* <Route path='/' element={<Index />} /> */}
+          <Route path='/' element={<Layout />}>
+            <Route path='/' element={<Home />} />
+            <Route path='/projects' element={<Projects />} />
+            <Route path='/templates' element={<Templates />} />
+          </Route>
+          <Route path='/design/create' element={<CreateDesign />}></Route>
         </Routes>
       </BrowserRouter>
     </>
