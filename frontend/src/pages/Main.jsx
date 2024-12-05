@@ -10,10 +10,12 @@ import TemplateDesign from "../components/main/TemplateDesign"
 import MyImages from "../components/MyImages"
 import Projects from "../components/Projects"
 import Image from "../components/Image"
+import CreateComponents from "../components/CreateComponents"
 
 const Main = () => {
 
   const [state, setState] = useState('')
+  const [currentComponent, setCurrentComponent] = useState('')
   const [show, setShow] = useState({
     status: true,
     name: ""
@@ -27,6 +29,33 @@ const Main = () => {
     })
   }
 
+  const moveElement = () => {
+    console.log('move!');
+  }
+  const resizeElement = () => {
+    console.log('resize!');
+  }
+  const rotateElement = () => {
+    console.log('rotate!');
+  }
+  const removeComponent = () => {
+    console.log('remove!');
+  }
+  const [components, setComponents] = useState([
+    {
+      name: "main_frame",
+      type: "rect",
+      id: Math.floor((Math.random() * 100) + 1),
+      height: 450,
+      width: 450,
+      z_index: 1,
+      color: "#ffffff",
+      image: "",
+      setCurrentComponent: (a) => setCurrentComponent(a)
+    }
+  ])
+
+console.log(currentComponent);
 
   return (
     <div className="h-screen bg-black min-w-screen">
@@ -115,10 +144,28 @@ const Main = () => {
               </div>
             }
           </div>
+
+          <div className="flex w-full h-full">
+            <div className={`flex justify-center items-center relative h-full ${!currentComponent ? 'w-full' : 'w-[calc(100%-250px)] overflow-hidden '}  `}>
+              <div className="m-w-[650px] m-h-[480px] flex justify-center items-center overflow-hidden">
+                <div id="main_design" className="relative w-auto h-auto overflow-hidden">
+                  {
+                    components.map((c, i)=><CreateComponents key={i} info={c} currentComponent={currentComponent} removeComponent={removeComponent}  /> )
+                  }
+                </div>
+              </div>
+            </div>
+                  {
+                    currentComponent && 
+                    <div className="h-full w-[250px] text-gray-300 bg-[#252627] px-3 py-2">
+
+                    </div>
+                  }
+          </div>
+
         </div>
       </div>
     </div>
   )
 }
-
 export default Main
